@@ -21,7 +21,7 @@ struct Provider: TimelineProvider {
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
         var entries: [SimpleEntry] = []
         
-        // Generate a timeline consisting of five entries an hour apart, starting from the current date.
+        // Generate a timeline consisting of 60 entries an minute apart, starting from the current date.
         let currentDate = Date()
         for hourOffset in 0 ..< 60 {
             let entryDate = Calendar.current.date(byAdding: .minute, value: hourOffset, to: currentDate)!
@@ -45,7 +45,7 @@ struct DayProgressWidgetEntryView : View {
     var textColor : Color
     
     init(entry: Provider.Entry) {
-        progress = getProgress();
+        progress = getProgress(currentDate: entry.date);
         
         switch Int(progress) {
         case 0..<25:
@@ -148,17 +148,17 @@ struct ProgressCircle: View {
     }
 }
 
-func getProgress() -> Double {
-    let now = Calendar.current.dateComponents(in: .current, from: Date())
+func getProgress(currentDate: Date) -> Double {
+    let now = Calendar.current.dateComponents(in: .current, from: currentDate)
     
-    var initialDate = Date()
-    var finalDate = Date()
+    var initialDate = currentDate
+    var finalDate = currentDate
     
     let todayAtOne = DateComponents(year: now.year, month: now.month, day: now.day, hour: 1)
     let todayAtOneDate = Calendar.current.date(from: todayAtOne)!
     
     // If we are awake in the morning and not at night
-    if(Date() > todayAtOneDate) {
+    if(currentDate > todayAtOneDate) {
         let today = DateComponents(year: now.year, month: now.month, day: now.day, hour: 11)
         initialDate = Calendar.current.date(from: today)!
         let tomorrow = DateComponents(year: now.year, month: now.month, day: now.day! + 1, hour: 1)
@@ -170,7 +170,7 @@ func getProgress() -> Double {
     }
     
     let totalDuration = finalDate.timeIntervalSince(initialDate)
-    let currentRemainingDuration = Date().timeIntervalSince(initialDate)
+    let currentRemainingDuration = currentDate.timeIntervalSince(initialDate)
     let percent = (currentRemainingDuration/totalDuration) * 100
     
     return percent
