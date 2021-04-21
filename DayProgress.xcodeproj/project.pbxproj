@@ -11,7 +11,36 @@
 		BC4A1FBB26304109000938AD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC4A1FBA26304109000938AD /* ContentView.swift */; };
 		BC4A1FBD2630410A000938AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC4A1FBC2630410A000938AD /* Assets.xcassets */; };
 		BC4A1FC02630410A000938AD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC4A1FBF2630410A000938AD /* Preview Assets.xcassets */; };
+		BC4A1FCF2630415B000938AD /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC4A1FCE2630415B000938AD /* WidgetKit.framework */; };
+		BC4A1FD12630415B000938AD /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC4A1FD02630415B000938AD /* SwiftUI.framework */; };
+		BC4A1FD42630415B000938AD /* DayProgressWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC4A1FD32630415B000938AD /* DayProgressWidget.swift */; };
+		BC4A1FD62630415B000938AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC4A1FD52630415B000938AD /* Assets.xcassets */; };
+		BC4A1FDA2630415B000938AD /* DayProgressWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = BC4A1FCC2630415B000938AD /* DayProgressWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		BC4A1FD82630415B000938AD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BC4A1FAD26304109000938AD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BC4A1FCB2630415B000938AD;
+			remoteInfo = DayProgressWidgetExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		BC4A1FDE2630415B000938AD /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				BC4A1FDA2630415B000938AD /* DayProgressWidgetExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		BC4A1FB526304109000938AD /* DayProgress.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DayProgress.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -20,6 +49,12 @@
 		BC4A1FBC2630410A000938AD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BC4A1FBF2630410A000938AD /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		BC4A1FC12630410A000938AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BC4A1FCC2630415B000938AD /* DayProgressWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = DayProgressWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		BC4A1FCE2630415B000938AD /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		BC4A1FD02630415B000938AD /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		BC4A1FD32630415B000938AD /* DayProgressWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayProgressWidget.swift; sourceTree = "<group>"; };
+		BC4A1FD52630415B000938AD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BC4A1FD72630415B000938AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -30,6 +65,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BC4A1FC92630415B000938AD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BC4A1FD12630415B000938AD /* SwiftUI.framework in Frameworks */,
+				BC4A1FCF2630415B000938AD /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -37,6 +81,8 @@
 			isa = PBXGroup;
 			children = (
 				BC4A1FB726304109000938AD /* DayProgress */,
+				BC4A1FD22630415B000938AD /* DayProgressWidget */,
+				BC4A1FCD2630415B000938AD /* Frameworks */,
 				BC4A1FB626304109000938AD /* Products */,
 			);
 			sourceTree = "<group>";
@@ -45,6 +91,7 @@
 			isa = PBXGroup;
 			children = (
 				BC4A1FB526304109000938AD /* DayProgress.app */,
+				BC4A1FCC2630415B000938AD /* DayProgressWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -69,6 +116,25 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		BC4A1FCD2630415B000938AD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BC4A1FCE2630415B000938AD /* WidgetKit.framework */,
+				BC4A1FD02630415B000938AD /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BC4A1FD22630415B000938AD /* DayProgressWidget */ = {
+			isa = PBXGroup;
+			children = (
+				BC4A1FD32630415B000938AD /* DayProgressWidget.swift */,
+				BC4A1FD52630415B000938AD /* Assets.xcassets */,
+				BC4A1FD72630415B000938AD /* Info.plist */,
+			);
+			path = DayProgressWidget;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -79,15 +145,34 @@
 				BC4A1FB126304109000938AD /* Sources */,
 				BC4A1FB226304109000938AD /* Frameworks */,
 				BC4A1FB326304109000938AD /* Resources */,
+				BC4A1FDE2630415B000938AD /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				BC4A1FD92630415B000938AD /* PBXTargetDependency */,
 			);
 			name = DayProgress;
 			productName = DayProgress;
 			productReference = BC4A1FB526304109000938AD /* DayProgress.app */;
 			productType = "com.apple.product-type.application";
+		};
+		BC4A1FCB2630415B000938AD /* DayProgressWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BC4A1FDB2630415B000938AD /* Build configuration list for PBXNativeTarget "DayProgressWidgetExtension" */;
+			buildPhases = (
+				BC4A1FC82630415B000938AD /* Sources */,
+				BC4A1FC92630415B000938AD /* Frameworks */,
+				BC4A1FCA2630415B000938AD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DayProgressWidgetExtension;
+			productName = DayProgressWidgetExtension;
+			productReference = BC4A1FCC2630415B000938AD /* DayProgressWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -99,6 +184,9 @@
 				LastUpgradeCheck = 1240;
 				TargetAttributes = {
 					BC4A1FB426304109000938AD = {
+						CreatedOnToolsVersion = 12.4;
+					};
+					BC4A1FCB2630415B000938AD = {
 						CreatedOnToolsVersion = 12.4;
 					};
 				};
@@ -117,6 +205,7 @@
 			projectRoot = "";
 			targets = (
 				BC4A1FB426304109000938AD /* DayProgress */,
+				BC4A1FCB2630415B000938AD /* DayProgressWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -128,6 +217,14 @@
 			files = (
 				BC4A1FC02630410A000938AD /* Preview Assets.xcassets in Resources */,
 				BC4A1FBD2630410A000938AD /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BC4A1FCA2630415B000938AD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BC4A1FD62630415B000938AD /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,7 +240,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BC4A1FC82630415B000938AD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BC4A1FD42630415B000938AD /* DayProgressWidget.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		BC4A1FD92630415B000938AD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BC4A1FCB2630415B000938AD /* DayProgressWidgetExtension */;
+			targetProxy = BC4A1FD82630415B000938AD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		BC4A1FC22630410A000938AD /* Debug */ = {
@@ -265,6 +378,7 @@
 		BC4A1FC52630410A000938AD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -287,6 +401,7 @@
 		BC4A1FC62630410A000938AD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -301,6 +416,48 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.sachin.DayProgress;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		BC4A1FDC2630415B000938AD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GB8643A5DD;
+				INFOPLIST_FILE = DayProgressWidget/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.sachin.DayProgress.DayProgressWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		BC4A1FDD2630415B000938AD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GB8643A5DD;
+				INFOPLIST_FILE = DayProgressWidget/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.sachin.DayProgress.DayProgressWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -323,6 +480,15 @@
 			buildConfigurations = (
 				BC4A1FC52630410A000938AD /* Debug */,
 				BC4A1FC62630410A000938AD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BC4A1FDB2630415B000938AD /* Build configuration list for PBXNativeTarget "DayProgressWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BC4A1FDC2630415B000938AD /* Debug */,
+				BC4A1FDD2630415B000938AD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

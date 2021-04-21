@@ -1,19 +1,50 @@
 //
-//  ContentView.swift
-//  DayProgress
+//  DayProgressWidget.swift
+//  DayProgressWidget
 //
 //  Created by Sachin Sampathkumar on 21/04/21.
 //
 
+import WidgetKit
 import SwiftUI
 
-struct ContentView: View {
+struct Provider: TimelineProvider {
+    func placeholder(in context: Context) -> SimpleEntry {
+        SimpleEntry(date: Date())
+    }
+    
+    func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
+        let entry = SimpleEntry(date: Date())
+        completion(entry)
+    }
+    
+    func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
+        var entries: [SimpleEntry] = []
+        
+        // Generate a timeline consisting of five entries an hour apart, starting from the current date.
+        let currentDate = Date()
+        for hourOffset in 0 ..< 60 {
+            let entryDate = Calendar.current.date(byAdding: .minute, value: hourOffset, to: currentDate)!
+            let entry = SimpleEntry(date: entryDate)
+            entries.append(entry)
+        }
+        
+        let timeline = Timeline(entries: entries, policy: .atEnd)
+        completion(timeline)
+    }
+}
+
+struct SimpleEntry: TimelineEntry {
+    let date: Date
+}
+
+struct DayProgressWidgetEntryView : View {
     
     private let maxValue: Double = 100;
     let progress : Double
     var textColor : Color
     
-    init() {
+    init(entry: Provider.Entry) {
         progress = getProgress();
         
         switch Int(progress) {
@@ -145,8 +176,22 @@ func getProgress() -> Double {
     return percent
 }
 
-struct ContentView_Previews: PreviewProvider {
+@main
+struct DayProgressWidget: Widget {
+    let kind: String = "DayProgressWidget"
+    
+    var body: some WidgetConfiguration {
+        StaticConfiguration(kind: kind, provider: Provider()) { entry in
+            DayProgressWidgetEntryView(entry: entry)
+        }
+        .configurationDisplayName("Day Progress")
+        .description("This is to display the percentage of day already spent")
+    }
+}
+
+struct DayProgressWidget_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        DayProgressWidgetEntryView(entry: SimpleEntry(date: Date()))
+            .previewContext(WidgetPreviewContext(family: .systemSmall))
     }
 }
