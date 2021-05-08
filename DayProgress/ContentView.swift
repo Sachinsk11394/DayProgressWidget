@@ -6,29 +6,39 @@
 //
 
 import SwiftUI
+import WidgetKit
 
 struct ContentView: View {
     
+    @AppStorage("wakeUp", store: UserDefaults(suiteName: "group.com.sachin.DayProgress"))
+    var wakeUpStoreData : Data = Data()
+    
+    @AppStorage("sleep", store: UserDefaults(suiteName: "group.com.sachin.DayProgress"))
+    var sleepStoreData : Data = Data()
+    
     private let maxValue: Double = 100;
-    let progress : Double
-    var textColor : Color
+    @State private var wakeUp: Date = Date()
+    @State private var sleep: Date = Date()
     
     init() {
-        progress = getProgress(currentDate: Date());
-        
-        switch Int(progress) {
-        case 0..<25:
-            textColor = Color.green
-        case 25..<50:
-            textColor = Color.yellow
-        case 50..<75:
-            textColor = Color.orange
-        case 75..<100:
-            textColor = Color.red
-        default:
-            textColor = Color.green
+        do {
+            let storedWakeUp = try JSONDecoder().decode(Date.self, from: wakeUpStoreData)
+            self._wakeUp = State(initialValue: storedWakeUp)
+            let storedSleep = try JSONDecoder().decode(Date.self, from: sleepStoreData)
+            self._sleep = State(initialValue: storedSleep)
+        } catch {
+            let currentTimeComponent = Calendar.current.dateComponents(in: .current, from: Date())
+            let todayAtSeven = DateComponents(year: currentTimeComponent.year, month: currentTimeComponent.month, day: currentTimeComponent.day, hour: 7, minute: 30)
+            let todayAtEleven = DateComponents(year: currentTimeComponent.year, month: currentTimeComponent.month, day: currentTimeComponent.day, hour: 23, minute: 30)
+            
+            guard let wakeUpEncode = try? JSONEncoder().encode(todayAtSeven) else {return}
+            self.wakeUpStoreData = wakeUpEncode
+            guard let sleepEncode = try? JSONEncoder().encode(todayAtEleven) else {return}
+            self.sleepStoreData = sleepEncode
+            
+            self._wakeUp = State(initialValue: Calendar.current.date(from: todayAtSeven)!)
+            self._sleep = State(initialValue: Calendar.current.date(from: todayAtEleven)!)
         }
-        
     }
     
     var body: some View {
@@ -37,8 +47,44 @@ struct ContentView: View {
                 .edgesIgnoringSafeArea(.all)
             
             VStack {
+                Text("Wake up")
+                    .font(.body)
+                    .foregroundColor(Color.green)
+                
+                DatePicker("Wake up", selection: $wakeUp, displayedComponents: .hourAndMinute)
+                    .datePickerStyle(GraphicalDatePickerStyle())
+                    .background(Color.gray)
+                    .accentColor(Color.orange)
+                    .labelsHidden()
+                    .frame(width: 200, height: 80, alignment: .center)
+                    .clipped()
+                    .padding(.bottom, 20)
+                    .onChange(of: wakeUp, perform:{ value in
+                        guard let storeData = try? JSONEncoder().encode(value) else {return}
+                        self.wakeUpStoreData = storeData
+                        WidgetCenter.shared.reloadAllTimelines()
+                    })
+                
+                Text("Sleep")
+                    .font(.body)
+                    .foregroundColor(Color.red)
+                
+                DatePicker("Sleep", selection: $sleep, displayedComponents: .hourAndMinute)
+                    .datePickerStyle(GraphicalDatePickerStyle())
+                    .background(Color.gray)
+                    .accentColor(Color.orange)
+                    .labelsHidden()
+                    .frame(width: 200, height: 80, alignment: .center)
+                    .clipped()
+                    .padding(.bottom, 20)
+                    .onChange(of: sleep, perform:{ value in
+                        guard let storeData = try? JSONEncoder().encode(value) else {return}
+                        self.sleepStoreData = storeData
+                        WidgetCenter.shared.reloadAllTimelines()
+                    })
+                
                 ZStack {
-                    ProgressCircle(value: progress,
+                    ProgressCircle(value: getProgress(a: wakeUp, b: sleep),
                                    maxValue: self.maxValue,
                                    style: .line,
                                    backgroundEnabled: true,
@@ -47,14 +93,29 @@ struct ContentView: View {
                                    lineWidth: 10)
                         .frame(height: 100)
                     
-                    Text(String(Int(progress)) + "%")
+                    Text(String(Int(getProgress(a: wakeUp, b: sleep))) + "%")
                         .font(.title)
-                        .foregroundColor(textColor)
+                        .foregroundColor(getTextColor(progressValue: Int(getProgress(a: wakeUp, b: sleep))))
                         .bold()
                 }
             }
         }
     }
+}
+
+func getTextColor(progressValue: Int) -> Color {
+    switch progressValue {
+        case 0..<25:
+            return Color.green
+        case 25..<50:
+            return Color.yellow
+        case 50..<75:
+            return Color.orange
+        case 75..<100:
+            return Color.red
+        default:
+            return Color.green
+        }
 }
 
 struct ProgressCircle: View {
@@ -103,8 +164,9 @@ struct ProgressCircle: View {
         ZStack {
             if self.backgroundEnabled {
                 Circle()
-                    .stroke(lineWidth: self.lineWidth)
+                    .stroke(style: self.style.strokeStyle(lineWidth: self.lineWidth))
                     .foregroundColor(self.backgroundColor)
+                    .rotationEffect(Angle(degrees: -90))
             }
             
             Circle()
@@ -117,29 +179,38 @@ struct ProgressCircle: View {
     }
 }
 
-func getProgress(currentDate: Date) -> Double {
-    let now = Calendar.current.dateComponents(in: .current, from: currentDate)
+func getProgress(a: Date, b: Date) -> Double {
+    var wakeUp = a
+    var sleep = b
+    let wakeUpDateComponent = Calendar.current.dateComponents(in: .current, from: wakeUp)
+    let sleepDateComponent = Calendar.current.dateComponents(in: .current, from: sleep)
     
-    var initialDate = currentDate
-    var finalDate = currentDate
+    let currentTime = Date()
+    let currentTimeComponent = Calendar.current.dateComponents(in: .current, from: currentTime)
     
-    let todayAtOne = DateComponents(year: now.year, month: now.month, day: now.day, hour: 1)
-    let todayAtOneDate = Calendar.current.date(from: todayAtOne)!
+    let todayAtFour = DateComponents(year: currentTimeComponent.year, month: currentTimeComponent.month, day: currentTimeComponent.day, hour: 4)
+    let todayAtFourDate = Calendar.current.date(from: todayAtFour)!
     
-    // If we are awake in the morning and not at night
-    if(currentDate > todayAtOneDate) {
-        let today = DateComponents(year: now.year, month: now.month, day: now.day, hour: 11)
-        initialDate = Calendar.current.date(from: today)!
-        let tomorrow = DateComponents(year: now.year, month: now.month, day: now.day! + 1, hour: 1)
-        finalDate = Calendar.current.date(from: tomorrow)!
-    } else {
-        let yesterday = DateComponents(year: now.year, month: now.month, day: now.day! - 1, hour: 1)
-        initialDate = Calendar.current.date(from: yesterday)!
-        finalDate = todayAtOneDate
+    // Check if user has set
+    // 1. Sleep time between midnight and 4 AM
+    // 2. We have crossed 4 AM today
+    // If so, push the sleep date to tomorrow
+    if(sleep < todayAtFourDate && currentTime > todayAtFourDate) {
+        let tomorrowSleep = DateComponents(year: sleepDateComponent.year, month: sleepDateComponent.month, day: sleepDateComponent.day! + 1, hour: sleepDateComponent.hour, minute: sleepDateComponent.minute)
+        sleep = Calendar.current.date(from: tomorrowSleep)!
     }
     
-    let totalDuration = finalDate.timeIntervalSince(initialDate)
-    let currentRemainingDuration = currentDate.timeIntervalSince(initialDate)
+    // Check if user has set
+    // 1. Sleep time between 4 AM and Midnight, basically user sleeps before midnight
+    // 2. We have crossed 4 AM today
+    // If so, push the wake up date to yesterday
+    if(sleep > todayAtFourDate && currentTime < todayAtFourDate) {
+        let yesterdayWakeUp = DateComponents(year: wakeUpDateComponent.year, month: wakeUpDateComponent.month, day: wakeUpDateComponent.day! - 1, hour: wakeUpDateComponent.hour, minute: wakeUpDateComponent.minute)
+        wakeUp = Calendar.current.date(from: yesterdayWakeUp)!
+    }
+    
+    let totalDuration = sleep.timeIntervalSince(wakeUp)
+    let currentRemainingDuration = currentTime.timeIntervalSince(wakeUp)
     let percent = (currentRemainingDuration/totalDuration) * 100
     
     return percent

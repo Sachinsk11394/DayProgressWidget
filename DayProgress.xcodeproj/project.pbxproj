@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BC3BAEAD26469A9300A11768 /* DayProgressWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = BC4A1FCC2630415B000938AD /* DayProgressWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		BC4A1FB926304109000938AD /* DayProgressApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC4A1FB826304109000938AD /* DayProgressApp.swift */; };
 		BC4A1FBB26304109000938AD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC4A1FBA26304109000938AD /* ContentView.swift */; };
 		BC4A1FBD2630410A000938AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC4A1FBC2630410A000938AD /* Assets.xcassets */; };
@@ -15,11 +16,10 @@
 		BC4A1FD12630415B000938AD /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC4A1FD02630415B000938AD /* SwiftUI.framework */; };
 		BC4A1FD42630415B000938AD /* DayProgressWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC4A1FD32630415B000938AD /* DayProgressWidget.swift */; };
 		BC4A1FD62630415B000938AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC4A1FD52630415B000938AD /* Assets.xcassets */; };
-		BC4A1FDA2630415B000938AD /* DayProgressWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = BC4A1FCC2630415B000938AD /* DayProgressWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		BC4A1FD82630415B000938AD /* PBXContainerItemProxy */ = {
+		BC3BAEAE26469A9300A11768 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BC4A1FAD26304109000938AD /* Project object */;
 			proxyType = 1;
@@ -29,13 +29,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		BC4A1FDE2630415B000938AD /* Embed App Extensions */ = {
+		BC3BAEB026469A9300A11768 /* Embed App Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				BC4A1FDA2630415B000938AD /* DayProgressWidgetExtension.appex in Embed App Extensions */,
+				BC3BAEAD26469A9300A11768 /* DayProgressWidgetExtension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -43,6 +43,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		BC12F00426467DF40041597B /* DayProgress.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DayProgress.entitlements; sourceTree = "<group>"; };
+		BC12F007264683200041597B /* DayProgressWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DayProgressWidgetExtension.entitlements; sourceTree = "<group>"; };
 		BC4A1FB526304109000938AD /* DayProgress.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DayProgress.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC4A1FB826304109000938AD /* DayProgressApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayProgressApp.swift; sourceTree = "<group>"; };
 		BC4A1FBA26304109000938AD /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 		BC4A1FAC26304109000938AD = {
 			isa = PBXGroup;
 			children = (
+				BC12F007264683200041597B /* DayProgressWidgetExtension.entitlements */,
 				BC4A1FB726304109000938AD /* DayProgress */,
 				BC4A1FD22630415B000938AD /* DayProgressWidget */,
 				BC4A1FCD2630415B000938AD /* Frameworks */,
@@ -99,6 +102,7 @@
 		BC4A1FB726304109000938AD /* DayProgress */ = {
 			isa = PBXGroup;
 			children = (
+				BC12F00426467DF40041597B /* DayProgress.entitlements */,
 				BC4A1FB826304109000938AD /* DayProgressApp.swift */,
 				BC4A1FBA26304109000938AD /* ContentView.swift */,
 				BC4A1FBC2630410A000938AD /* Assets.xcassets */,
@@ -145,12 +149,12 @@
 				BC4A1FB126304109000938AD /* Sources */,
 				BC4A1FB226304109000938AD /* Frameworks */,
 				BC4A1FB326304109000938AD /* Resources */,
-				BC4A1FDE2630415B000938AD /* Embed App Extensions */,
+				BC3BAEB026469A9300A11768 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				BC4A1FD92630415B000938AD /* PBXTargetDependency */,
+				BC3BAEAF26469A9300A11768 /* PBXTargetDependency */,
 			);
 			name = DayProgress;
 			productName = DayProgress;
@@ -251,10 +255,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		BC4A1FD92630415B000938AD /* PBXTargetDependency */ = {
+		BC3BAEAF26469A9300A11768 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = BC4A1FCB2630415B000938AD /* DayProgressWidgetExtension */;
-			targetProxy = BC4A1FD82630415B000938AD /* PBXContainerItemProxy */;
+			targetProxy = BC3BAEAE26469A9300A11768 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -378,15 +382,15 @@
 		BC4A1FC52630410A000938AD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = DayProgress/DayProgress.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"DayProgress/Preview Content\"";
 				DEVELOPMENT_TEAM = GB8643A5DD;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = DayProgress/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -401,15 +405,15 @@
 		BC4A1FC62630410A000938AD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = DayProgress/DayProgress.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"DayProgress/Preview Content\"";
 				DEVELOPMENT_TEAM = GB8643A5DD;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = DayProgress/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -426,6 +430,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = DayProgressWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GB8643A5DD;
 				INFOPLIST_FILE = DayProgressWidget/Info.plist;
@@ -447,6 +452,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = DayProgressWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GB8643A5DD;
 				INFOPLIST_FILE = DayProgressWidget/Info.plist;

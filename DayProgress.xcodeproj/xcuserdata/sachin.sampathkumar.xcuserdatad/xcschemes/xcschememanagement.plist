@@ -11,8 +11,23 @@
 		</dict>
 		<key>DayProgressWidgetExtension.xcscheme_^#shared#^_</key>
 		<dict>
+			<key>isShown</key>
+			<true/>
 			<key>orderHint</key>
 			<integer>1</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>BC4A1FB426304109000938AD</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BC4A1FCB2630415B000938AD</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>
