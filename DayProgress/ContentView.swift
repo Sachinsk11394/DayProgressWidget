@@ -193,18 +193,18 @@ func getProgress(a: Date, b: Date) -> Double {
     
     // Check if user has set
     // 1. Sleep time between midnight and 4 AM
-    // 2. We have crossed 4 AM today
+    // 2. You have crossed your wake up time
     // If so, push the sleep date to tomorrow
-    if(sleep < todayAtFourDate && currentTime > todayAtFourDate) {
+    if(sleep < todayAtFourDate && currentTime > wakeUp) {
         let tomorrowSleep = DateComponents(year: sleepDateComponent.year, month: sleepDateComponent.month, day: sleepDateComponent.day! + 1, hour: sleepDateComponent.hour, minute: sleepDateComponent.minute)
         sleep = Calendar.current.date(from: tomorrowSleep)!
     }
     
     // Check if user has set
     // 1. Sleep time between 4 AM and Midnight, basically user sleeps before midnight
-    // 2. We have crossed 4 AM today
+    // 2. You have not crossed your sleep time
     // If so, push the wake up date to yesterday
-    if(sleep > todayAtFourDate && currentTime < todayAtFourDate) {
+    if(sleep < todayAtFourDate && currentTime < sleep) {
         let yesterdayWakeUp = DateComponents(year: wakeUpDateComponent.year, month: wakeUpDateComponent.month, day: wakeUpDateComponent.day! - 1, hour: wakeUpDateComponent.hour, minute: wakeUpDateComponent.minute)
         wakeUp = Calendar.current.date(from: yesterdayWakeUp)!
     }
@@ -212,6 +212,11 @@ func getProgress(a: Date, b: Date) -> Double {
     let totalDuration = sleep.timeIntervalSince(wakeUp)
     let currentRemainingDuration = currentTime.timeIntervalSince(wakeUp)
     let percent = (currentRemainingDuration/totalDuration) * 100
+    
+    // You are in your sleep cycle
+    if(currentRemainingDuration < 0 && totalDuration < 0){
+        return percent * -1
+    }
     
     return percent
 }
