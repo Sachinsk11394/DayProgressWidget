@@ -180,13 +180,17 @@ struct ProgressCircle: View {
 }
 
 func getProgress(a: Date, b: Date) -> Double {
-    var wakeUp = a
-    var sleep = b
-    let wakeUpDateComponent = Calendar.current.dateComponents(in: .current, from: wakeUp)
-    let sleepDateComponent = Calendar.current.dateComponents(in: .current, from: sleep)
-    
     let currentTime = Date()
     let currentTimeComponent = Calendar.current.dateComponents(in: .current, from: currentTime)
+    
+    let aComponent = Calendar.current.dateComponents(in: .current, from: a)
+    let bComponent = Calendar.current.dateComponents(in: .current, from: b)
+    
+    let wakeUpDateComponent = DateComponents(year: currentTimeComponent.year, month: currentTimeComponent.month, day: currentTimeComponent.day, hour: aComponent.hour, minute: aComponent.minute)
+    let sleepDateComponent = DateComponents(year: currentTimeComponent.year, month: currentTimeComponent.month, day: currentTimeComponent.day, hour: bComponent.hour, minute: bComponent.minute)
+    
+    var wakeUp = Calendar.current.date(from: wakeUpDateComponent)!
+    var sleep = Calendar.current.date(from: sleepDateComponent)!
     
     let todayAtFour = DateComponents(year: currentTimeComponent.year, month: currentTimeComponent.month, day: currentTimeComponent.day, hour: 4)
     let todayAtFourDate = Calendar.current.date(from: todayAtFour)!
