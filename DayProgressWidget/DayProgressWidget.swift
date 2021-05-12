@@ -229,7 +229,7 @@ struct ProgressCircle: View {
 }
 
 func getProgress(date: Date, a: Date, b: Date) -> Double {
-    let currentTime = Date()
+    let currentTime = date
     let currentTimeComponent = Calendar.current.dateComponents(in: .current, from: currentTime)
     
     let aComponent = Calendar.current.dateComponents(in: .current, from: a)
